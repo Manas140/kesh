@@ -1,0 +1,40 @@
+#!/bin/sh
+# keshrc -> ~/.config/kesh/keshrc
+case "$state" in
+  #super shift l
+  "46 50 133") lock;;
+  #workspaces 
+  #super [1-7] (focus [1-7] workspace)
+  "10 133") bspc desktop -f 1;;
+  "11 133") bspc desktop -f 2;;
+  "12 133") bspc desktop -f 3;;
+  "13 133") bspc desktop -f 4;;
+  "14 133") bspc desktop -f 5;;
+  "15 133") bspc desktop -f 6;;
+  "16 133") bspc desktop -f 7;;
+  #super shift [1-7] (move node to [1-7] workspace)
+  "10 50 133") bspc node -d 1 && sleep 1;;
+  "11 50 133") bspc node -d 2 && sleep 1;;
+  "12 50 133") bspc node -d 3 && sleep 1;;
+  "13 50 133") bspc node -d 4 && sleep 1;;
+  "14 50 133") bspc node -d 5 && sleep 1;;
+  "15 50 133") bspc node -d 6 && sleep 1;;
+  "16 50 133") bspc node -d 7 && sleep 1;;
+  #alt tab (toggle focus)
+  "23 64") bspc node -f next.local.!hidden.window && sleep 0.7;;
+  #super tab (toggle floating)
+  "23 133") bspc node -t \~floating && sleep 0.7;;
+  #super space (toggle fullscreen)
+  "65 133") bspc node -t \~fullscreen && sleep 0.7;;
+  #super enter (kitty) 
+  "36 133") kitty &
+    sleep 1;;
+  #super r (rofi)
+  "27 133") rofi -show;;
+  #super q (kill a window)
+  "24 133") bspc node -k && sleep 0.1;;
+  #print (flameshot screenshot)
+  "107") flameshot gui;;
+  #super shift r (reload bspwm)
+  "27 50 133") bspc wm -r && exit;;
+esac

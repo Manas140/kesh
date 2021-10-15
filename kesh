@@ -1,0 +1,56 @@
+#!/bin/sh
+
+dependencies="xinput"
+cr="\033[1;31m"
+cg="\033[1;32m"
+cb="\033[1;34m"
+
+#help function
+help() { printf "${cg}kesh: a x11 hotkey deamon
+Usage: kesh ${cb}[s|g|h]${cg}
+${cb}  s:${cg} start kesh
+${cb}  g:${cg} get current key press ids
+${cb}  h:${cg} help page
+${cr}Report issues at: https://github.com/manas140/kesh/\n" && exit; }
+
+#check dependencies
+check_dep() {
+  for dep in $dependencies; do
+    if ! type $dep >/dev/null; then
+      printf "${cr}$dep Not Found\n" && exit 1;
+    fi
+  done
+}
+
+get_id() {
+  printf "$(xinput --list | grep -i 'set' | grep -i -m 1 'keyboard' | grep -o 'id=[0-9]\+' | grep -o '[0-9]\+')"
+}
+
+start() {
+  if [ -f $HOME/.config/kesh/keshrc ]; then
+    printf "${cg}[*] keshrc Found in $HOME/.config/kesh/keshrc\n"
+    id=$(get_id)
+    while true; do
+      state=$(echo $(xinput query-state $id | grep "=" |sed 's/key\[//g' | sed 's/\]=down//g' | grep -v "up"))
+      . /$HOME/.config/kesh/keshrc
+    done
+  else
+    printf "${cr}[-] Error: File Not Found On Path '$HOME/.config/kesh/keshrc'.\n" && exit 1
+  fi
+}
+
+get() {
+  id=$(get_id)
+  for a in 3 2 1; do printf "${cg}Press It Before $a\r\n"; sleep 1; done
+  state=$(echo $(xinput query-state $id | grep "=" |sed 's/key\[//g' | sed 's/\]=down//g' | grep -v "up"))
+  printf "${cg}$state\n"
+}
+
+#args
+case $1 in 
+  g) check_dep
+    get;;
+  s) check_dep
+    start;;
+  *) help;; 
+esac
