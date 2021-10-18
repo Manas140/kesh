@@ -11,7 +11,7 @@ Dependencies:
 
 Install:
 ```
-  git clone https://github.com/Manas140/pluck.git && cd pluck
+  git clone https://github.com/Manas140/kesh.git && cd kesh
   ./install.sh i
 ```
 
