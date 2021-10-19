@@ -1,22 +1,22 @@
-# Kesh (Key Sh)
+# Kesh
 A X11 Hotkey Deamon In Sh (WIP)
 
 Kesh(Key Sh) is a WIP simple X11 hotkey deamon(kinda) written in Sh
+
 Warning: currently kesh isnt meant for daily use
 
-Dependencies:
+# Dependencies
 ```
   xinput
 ```
 
-Install:
+# Install
 ```
   git clone https://github.com/Manas140/kesh.git && cd kesh
   ./install.sh i
 ```
 
-Usage:
-
+# Usage
 ```
   kesh [s|g|h]
     s: start kesh
@@ -24,16 +24,14 @@ Usage:
     h: help page
 ```
 
-Setup:
-
+# Setup (After Install)
 ```
-  # do install first, after that
   mkdir $HOME/.config/kesh 
   cp -r keshrc $HOME/.config/kesh/keshrc 
   kesh s
 ```
 
-Configuration:
+# Configuration
   Get Keystroke ids:
 
   ```
@@ -50,14 +48,12 @@ Configuration:
     esac
   ```
 
-Example:
-
+# Start Kesh 
 ```
   kesh s
 ```
 
-Knows Issues:
-
+# Knows Issues
 ```
   Cannot detect 'Keyboard Id' properly
   High on cpu usage (due to continues while loop)
