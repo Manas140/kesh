@@ -1,7 +1,7 @@
-# Kesh
-A X11 Hotkey Deamon In Sh (WIP)
+# Kesh [ Archived ]
+A X11 Hotkey Deamon In Sh (Archived)
 
-Kesh(Key Sh) is a WIP simple X11 hotkey deamon(kinda) written in Sh
+Kesh(Key Sh) is a simple X11 hotkey deamon(kinda) written in Sh
 
 Warning: currently kesh isnt meant for daily use
 
@@ -58,6 +58,5 @@ Warning: currently kesh isnt meant for daily use
   Cannot detect 'Keyboard Id' properly
   High on cpu usage (due to continues while loop)
   Can only register key_hold and not key_press making me add sleep to avoid multiple execution of command
-  More i haven't encountered please make a issue if you found so
   No Id registration for fn key
 ```
